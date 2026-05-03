@@ -7,3 +7,10 @@
 <cond> -> "if ()" | "else" | "else if ()"
 <loop> -> for () | while () | Do {} while ()
 <TEMPNAME> -> '{}' | '()' | '""' | '[]' 
+
+example inputs
+n360
+a000
+e153
+s050
+c241

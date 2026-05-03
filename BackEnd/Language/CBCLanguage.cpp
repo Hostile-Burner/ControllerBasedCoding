@@ -7,14 +7,23 @@ class CBC {
     private:
     std::unordered_map<int, std::string> env;
 
+    //used to trim extra spaces
+    std::string trim(const std::string& str) {
+        auto start = str.begin();
+        while (start != str.end() && std::isspace(*start)) ++start;
+        auto end = str.end();
+        do { --end; } while (end != start && std::isspace(*end));
+        return std::string(start, end + 1);
+    }
+
     //translate raw inputs into readable language
     std::string translate(std::string input){
-
+        //
     }
     void run(std::string input){
         input = translate(input);
 
-        
+
     }
 
     public:
@@ -32,7 +41,7 @@ class CBC {
         std::string line;
         //loop each line in file till end of file
         while (std::getline(file, line)){
-            run(line);
+            run(trim(line));
         }
 
         file.close();
