@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <fstream>
 #include <string>
-#include "Catagories.h"
+#include "Catagories.cpp"
 
 class CBC {
     private:
@@ -20,7 +20,6 @@ class CBC {
         //translate raw inputs into readable language
         std::string translate(std::string input){
             
-            num[2];
 
         }
         void run(std::string input){
