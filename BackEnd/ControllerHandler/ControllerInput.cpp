@@ -4,7 +4,7 @@
 int main() {
     //initalize SDL
     if (!SDL_Init(SDL_INIT_GAMEPAD)) {
-        std::cout << "SDL init failed: " << SDL_GetError() << "\n";
+        std::cerr << "SDL init failed: " << SDL_GetError() << "\n";
         exit(1);
     }
     
@@ -25,7 +25,7 @@ int main() {
 
     //check if controlle = usable
     if (!controller) {
-        std::cout << "Could not open controller: " << SDL_GetError() << "\n";
+        std::cerr << "Could not open controller: " << SDL_GetError() << "\n";
         SDL_Quit();
         exit(1);
     }

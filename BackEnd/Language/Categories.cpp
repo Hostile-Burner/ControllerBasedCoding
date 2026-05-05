@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <variant>
 class Category{
@@ -60,7 +61,7 @@ class Category{
                     if (select >= 10) select = 9; 
                     return TEMPNAME2[select];
                 default: 
-                    std::cerr << "Error: Catagory does not exist";
+                    std::cerr << "Error: Category does not exist";
                     exit(1);
             }
         }
