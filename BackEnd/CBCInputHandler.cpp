@@ -3,11 +3,13 @@
 #include "Language/CBCLanguage.cpp"
 
 //on startup, select between active translation or file reading
-//TODO: Live translation
-//TODO: File reading
+///TODO: Live translation
+///TODO: File reading
 int main(){
     std::string userInput;
     CBC CBC;
+
+    ///TODO: maybe add trim spaces
 
     while(true){
         //selection
@@ -15,11 +17,11 @@ int main(){
                 << "0. Exit" << "\n"
                 << "1. Live Translation" << "\n"
                 << "2. Read File" 
-                << std::endl;
+                    << std::endl;
 
         std::getline(std::cin, userInput);
         if (userInput == "0"){
-            return 0;
+            exit(0);
         } else if (userInput == "1"){
             std::cout << "This usage has not been implemented, terminating program.";
 
@@ -30,8 +32,6 @@ int main(){
             CBC.runFile(userInput); // send file name to language
         } else {
             std::cout << "invalid input detected, please try again." << std::endl;
-            continue;
         }
-        return 0;
     }
 }

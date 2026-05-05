@@ -4,8 +4,8 @@
 int main() {
     //initalize SDL
     if (!SDL_Init(SDL_INIT_GAMEPAD)) {
-        std::cout << "SDL init failed: " << SDL_GetError() << "\n";
-        return 1;
+        std::cerr << "SDL init failed: " << SDL_GetError() << "\n";
+        exit(1);
     }
     
     // count of controllers visable
@@ -16,7 +16,7 @@ int main() {
         std::cout << "No controller found\n";
         SDL_free(gamepads);
         SDL_Quit();
-        return 1;
+        exit(1);
     }
 
     //use first controller
@@ -25,9 +25,9 @@ int main() {
 
     //check if controlle = usable
     if (!controller) {
-        std::cout << "Could not open controller: " << SDL_GetError() << "\n";
+        std::cerr << "Could not open controller: " << SDL_GetError() << "\n";
         SDL_Quit();
-        return 1;
+        exit(1);
     }
 
     SDL_Event e;
@@ -47,7 +47,7 @@ int main() {
             if (e.type == SDL_EVENT_QUIT) {
                 SDL_CloseGamepad(controller);
                 SDL_Quit();
-                return 0;
+                exit(0);
             }
         }
     }

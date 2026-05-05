@@ -17,7 +17,7 @@ c241
 
 example
 c024n120 e012 n120 s315
-a15 e012 n350s175
+a015 e012 n350s175
 s300
 
 numbers sudo random but should translate to
