@@ -7,9 +7,11 @@
 #include <cmath>
 #include <iomanip>
 #include <SDL3/SDL.h>
-#include "Categories.cpp"
+#include "Language/Categories.cpp"
 #include "Language/CBCLanguage.cpp"
 
+///TODO: just double check, as enter is loaded with being the enter key, and also confirm button
+///FIXME:handleButtonPress() uses endl, others use flush, should be consistent, flush is better for live updates so changing to that.
 class CInputToCBC {
     std::string trim(const std::string& s) {
         size_t first = s.find_first_not_of(" \t\r\n");
@@ -31,11 +33,12 @@ private:
 
 public:
     // Reads text settings and converts them to usable backend arrays
+    ///TODO: changing to use a YAML file for settings instead of custom text format, will require a YAML parser library
     void loadSettings(std::string filename) {
         std::ifstream file(filename);
         if (!file.is_open()) {
             std::cerr << "Error: Could not open " << filename << std::endl;
-            return;
+            exit(1);
         }
 
         std::string line;
@@ -96,6 +99,8 @@ void updateJoystick(int16_t x, int16_t y) {
     }
 
     //Controller Actions Buttons, Spacebar, Enter 
+    ///FIXME: cbcProcessor.run() showing a error on my end
+    ///TODO: make sure these inputs are not hard coded to a button but from the selected button in settings file.
     void handleButtonPress(int sdlButtonIdx, CBC& cbcProcessor) {
         // Spacebar Action Immediately sends 's000' 
         if (sdlButtonIdx == SDL_GAMEPAD_BUTTON_LEFT_SHOULDER) { // Mapping LB1 to Space[cite: 6]
