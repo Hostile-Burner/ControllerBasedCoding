@@ -80,13 +80,14 @@ class CBC {
             }
             fileIn.close();
             fileOut.close();
+
+            ///TODO: add to dump the files with the inputfile location
             //Compiles a .exe to run the file output
             std::string compile = "cl \"" + fileName + "\"";
             if (system(compile.c_str()) != 0) {
                 std::cerr << "Compile failed." << std::endl;
                 exit(1);
             }
-
             //executes .exe
             system((".\\" + fileName.substr(0, fileName.find_last_of('.')) + ".exe").c_str());
         }
