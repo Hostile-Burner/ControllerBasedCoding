@@ -28,8 +28,8 @@ class CBC {
         std::string translate(std::string input){
             return toString(cat.getCat(input[0],input.substr(1)));
         }
-        //TODO: convert to spit out string maybe for runFile TODO
-        void run(std::string input) {
+        
+        std::string run(std::string input) {
             std::string translatedLine = "";
             while(!input.empty()) {
                 
@@ -56,21 +56,34 @@ class CBC {
             std::cout << "This usage has not been implemented.";
         }
         void runFile(std::string fileName){
-            std::ifstream file(fileName);
+            std::ifstream fileIn(fileName);
             
-            if (!file.is_open()) {
+            if (!fileIn.is_open()) {
                 std::cerr << "Error: Could not open " << fileName <<"." << std::endl;
                 return;
             }
 
+            //TODO: replace ".cpp" with input from controller handler to select any language
+            fileName = fileName.substr(0, fileName.find_last_of('.')) + ".cpp";
+            std::ofstream fileOut;
+            fileOut.open(fileName, std::ios::out);
+
+
             std::string line;
             //loop each line in file till end of file
-            while (std::getline(file, line)){
-                run(trim(line));
+            while (std::getline(fileIn, line)){
+                fileOut << run(trim(line)) << std::endl;
+            }
+            fileIn.close();
+            fileOut.close();
+            //Compiles a .exe to run the file output
+            std::string compile = "cl \"" + fileName + "\"";
+            if (system(compile.c_str()) != 0) {
+                std::cerr << "Compile failed." << std::endl;
+                return;
             }
 
-            //TODO:Change to spit out language converted version file and then run that file
-            file.close();
-            return;
+            //executes .exe
+            system((".\\" + fileName.substr(0, fileName.find_last_of('.')) + ".exe").c_str());
         }
 };
