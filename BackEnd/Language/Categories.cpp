@@ -14,8 +14,7 @@ class Category{
                                   '[', ']', '{', '}', '\\', '|', ';', ':', '\'', '\"', ',', '.', '?'};
         const std::string cond[3] = {"if ", "else", "else if "};
         const std::string loop[3] = {"for", "while", "Do"}; // for live, not for file
-        const std::string TEMPNAME[4] =  {"{}"  , "()"  , "\"\""  , "[]"}; // for live, not for file
-        const char TEMPNAME2[10] =  {'{', '}', '(', ')', '\"', '\"', '[', ']'}; 
+        const std::string bracket[15] =  {"{}", "{", "}", "()", "(", ")", "\"\"", "\"", "\"", "[]", "[", "]", "<>", "<", ">"}; 
     public:
         using Var = std::variant<int, char, std::string>;
 
@@ -52,14 +51,10 @@ class Category{
                     int select = std::stoi(degree) * 3 / 360;
                     if (select >= 3) select = 2; 
                     return loop[select];  
-                case 'T': 
-                    int select = std::stoi(degree) * 4 / 360;
-                    if (select >= 4) select = 3; 
-                    return TEMPNAME[select];
-                case 'z': 
-                    int select = std::stoi(degree) * 10 / 360;
-                    if (select >= 10) select = 9; 
-                    return TEMPNAME2[select];
+                case 'b': 
+                    int select = std::stoi(degree) * 15 / 360;
+                    if (select >= 15) select = 14; 
+                    return bracket[select];
                 default: 
                     std::cerr << "Error: Category does not exist";
                     exit(1);
